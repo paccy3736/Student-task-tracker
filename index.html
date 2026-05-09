@@ -4,10 +4,36 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Student Task Tracker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body>
-    <header></header>
-    <main></main>
-    <footer></footer>
+  <body class="bg-gray-100 min-h-screen flex flex-col font-sans">
+
+    <nav class="bg-slate-900 shadow-lg sticky top-0 z-50">
+      <div class="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <img src="logo1.png" alt="Logo" class="h-10 w-auto rounded-lg object-contain shrink-0" />
+          <span class="text-white text-xl font-bold tracking-wide">Student Task Tracker</span>
+        </div>
+        <span class="text-slate-400 text-sm hidden sm:block">Stay organised. Stay ahead.</span>
+      </div>
+    </nav>
+
+    <header class="bg-gradient-to-br from-indigo-500 via-violet-500 to-purple-600 text-white py-14 px-4 text-center">
+      <h1 class="text-3xl sm:text-4xl font-extrabold mb-3 drop-shadow">
+        Manage Your Tasks Effortlessly
+      </h1>
+      <p class="text-indigo-100 text-base sm:text-lg max-w-xl mx-auto opacity-90">
+        Add your assignments and deadlines, track what needs to be done,
+        and never miss a due date again.
+      </p>
+    </header>
+
+    <main class="flex-1 max-w-5xl mx-auto w-full px-4 py-10 flex flex-col gap-10">
+    </main>
+
+    <footer class="text-center text-gray-400 text-sm py-5 border-t border-gray-200">
+      &copy; 2026 Student Task Tracker &mdash; Built with HTML, Tailwind CSS &amp; JavaScript.
+    </footer>
+
   </body>
 </html>
