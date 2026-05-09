@@ -29,11 +29,72 @@
     </header>
 
     <main class="flex-1 max-w-5xl mx-auto w-full px-4 py-10 flex flex-col gap-10">
+
+      <section class="bg-white rounded-2xl shadow-md p-6 sm:p-8">
+        <h2 class="text-xl font-semibold text-gray-700 mb-6">Add a New Task</h2>
+
+        <form id="task-form" novalidate
+              class="flex flex-col sm:flex-row gap-4 items-start sm:items-end">
+
+          <div class="flex-1 w-full">
+            <label for="task-name" class="block text-sm font-medium text-gray-600 mb-1">
+              Task Name
+            </label>
+            <input
+              type="text"
+              id="task-name"
+              placeholder="e.g. Submit Math Assignment"
+              class="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-gray-800
+                     focus:outline-none focus:ring-2 focus:ring-indigo-400 transition"
+            />
+          </div>
+
+          <div class="w-full sm:w-48">
+            <label for="task-date" class="block text-sm font-medium text-gray-600 mb-1">
+              Due Date
+            </label>
+            <input
+              type="date"
+              id="task-date"
+              class="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-gray-800
+                     focus:outline-none focus:ring-2 focus:ring-indigo-400 transition"
+            />
+          </div>
+
+          <button
+            type="submit"
+            class="w-full sm:w-auto bg-gradient-to-r from-indigo-500 via-violet-500 to-purple-600
+                   hover:from-indigo-600 hover:via-violet-600 hover:to-purple-700 active:scale-95
+                   text-white font-semibold px-6 py-2.5 rounded-lg transition-all duration-150
+                   shadow cursor-pointer"
+          >
+            Add Task
+          </button>
+        </form>
+
+        <p id="form-error" class="mt-3 text-red-500 text-sm hidden">
+          ⚠️ Please fill in both the task name and due date.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold text-gray-700 mb-4">Your Tasks</h2>
+
+        <div id="empty-state" class="text-center text-gray-400 py-16 hidden">
+          <span class="text-5xl block mb-3">🗒️</span>
+          <p class="text-lg">No tasks yet. Add one above to get started!</p>
+        </div>
+
+        <div id="task-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        </div>
+      </section>
+
     </main>
 
     <footer class="text-center text-gray-400 text-sm py-5 border-t border-gray-200">
       &copy; 2026 Student Task Tracker &mdash; Built with HTML, Tailwind CSS &amp; JavaScript.
     </footer>
 
+    <script src="script.js"></script>
   </body>
 </html>
