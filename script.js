@@ -1,9 +1,23 @@
-﻿const form       = document.getElementById('task-form');
+﻿const STORAGE_KEY = 'student_tasks';
+
+const form       = document.getElementById('task-form');
 const nameInput  = document.getElementById('task-name');
 const dateInput  = document.getElementById('task-date');
 const formError  = document.getElementById('form-error');
 const taskList   = document.getElementById('task-list');
 const emptyState = document.getElementById('empty-state');
+
+function loadTasks() {
+  try {
+    return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+  } catch {
+    return [];
+  }
+}
+
+function saveTasks(tasks) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
+}
 
 function formatDate(isoDate) {
   const [year, month, day] = isoDate.split('-').map(Number);
@@ -63,6 +77,9 @@ function renderTask(task) {
 
 function addTask(name, date) {
   const task = { id: crypto.randomUUID(), name: name.trim(), date };
+  const tasks = loadTasks();
+  tasks.push(task);
+  saveTasks(tasks);
   renderTask(task);
 }
 
