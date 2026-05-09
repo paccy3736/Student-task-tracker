@@ -29,6 +29,18 @@ function formatDate(isoDate) {
   });
 }
 
+function dueDateStyle(isoDate) {
+  const [year, month, day] = isoDate.split('-').map(Number);
+  const due   = new Date(year, month - 1, day);
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const diff = Math.ceil((due - today) / 86_400_000);
+
+  if (diff < 0)  return { border: 'border-red-400',    badge: 'bg-red-100 text-red-600',       label: 'Overdue'  };
+  if (diff <= 2) return { border: 'border-orange-400', badge: 'bg-orange-100 text-orange-600', label: 'Due soon' };
+  return               { border: 'border-indigo-300',  badge: 'bg-indigo-50 text-indigo-600',  label: ''         };
+}
+
 function escapeHtml(str) {
   return str
     .replace(/&/g, '&amp;')
@@ -46,14 +58,22 @@ function deleteTask(id) {
   saveTasks(loadTasks().filter(t => t.id !== id));
   const card = taskList.querySelector(`[data-id="${id}"]`);
   if (!card) return;
-  card.remove();
-  updateEmptyState();
+  card.classList.add('animate-fadeOut');
+  card.addEventListener('animationend', () => {
+    card.remove();
+    updateEmptyState();
+  }, { once: true });
 }
 
 function renderTask(task) {
+  const { border, badge, label } = dueDateStyle(task.date);
   const card = document.createElement('div');
   card.dataset.id = task.id;
-  card.className = 'bg-white rounded-2xl shadow-md p-5 flex flex-col gap-3 border-l-4 border-indigo-300';
+  card.className = [
+    'animate-fadeSlideIn',
+    'bg-white rounded-2xl shadow-md p-5',
+    'flex flex-col gap-3 border-l-4', border,
+  ].join(' ');
 
   card.innerHTML = `
     <div class="flex items-start justify-between gap-2">
@@ -66,8 +86,9 @@ function renderTask(task) {
         title="Delete task"
       >✕</button>
     </div>
-    <div class="flex items-center gap-2">
+    <div class="flex items-center gap-2 flex-wrap">
       <span class="text-gray-400 text-sm">📅 ${formatDate(task.date)}</span>
+      ${label ? `<span class="text-xs font-medium px-2 py-0.5 rounded-full ${badge}">${label}</span>` : ''}
     </div>
   `;
 
