@@ -43,6 +43,7 @@ function updateEmptyState() {
 }
 
 function deleteTask(id) {
+  saveTasks(loadTasks().filter(t => t.id !== id));
   const card = taskList.querySelector(`[data-id="${id}"]`);
   if (!card) return;
   card.remove();
