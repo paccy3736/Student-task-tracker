@@ -28,6 +28,13 @@ function updateEmptyState() {
   emptyState.classList.toggle('hidden', taskList.children.length > 0);
 }
 
+function deleteTask(id) {
+  const card = taskList.querySelector(`[data-id="${id}"]`);
+  if (!card) return;
+  card.remove();
+  updateEmptyState();
+}
+
 function renderTask(task) {
   const card = document.createElement('div');
   card.dataset.id = task.id;
@@ -38,12 +45,18 @@ function renderTask(task) {
       <h3 class="text-gray-800 font-semibold text-base leading-snug break-words flex-1">
         ${escapeHtml(task.name)}
       </h3>
+      <button
+        class="delete-btn flex-shrink-0 text-gray-300 hover:text-red-500 transition-colors duration-150 text-xl leading-none cursor-pointer"
+        aria-label="Delete task"
+        title="Delete task"
+      >✕</button>
     </div>
     <div class="flex items-center gap-2">
       <span class="text-gray-400 text-sm">📅 ${formatDate(task.date)}</span>
     </div>
   `;
 
+  card.querySelector('.delete-btn').addEventListener('click', () => deleteTask(task.id));
   taskList.appendChild(card);
   updateEmptyState();
 }
