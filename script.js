@@ -75,6 +75,12 @@ function renderTask(task) {
   updateEmptyState();
 }
 
+function renderAll(tasks) {
+  taskList.innerHTML = '';
+  tasks.forEach(renderTask);
+  updateEmptyState();
+}
+
 function addTask(name, date) {
   const task = { id: crypto.randomUUID(), name: name.trim(), date };
   const tasks = loadTasks();
@@ -127,4 +133,4 @@ dateInput.addEventListener('change', () => {
   if (nameInput.value.trim() && dateInput.value) clearError();
 });
 
-updateEmptyState();
+renderAll(loadTasks());
