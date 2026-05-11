@@ -5,28 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Student Task Tracker</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            keyframes: {
-              fadeSlideIn: {
-                '0%':   { opacity: '0', transform: 'translateY(14px)' },
-                '100%': { opacity: '1', transform: 'translateY(0)' },
-              },
-              fadeOut: {
-                '0%':   { opacity: '1', transform: 'scale(1)' },
-                '100%': { opacity: '0', transform: 'scale(0.95)' },
-              },
-            },
-            animation: {
-              fadeSlideIn: 'fadeSlideIn 0.25s ease-out both',
-              fadeOut:     'fadeOut 0.2s ease-in both',
-            },
-          },
-        },
-      };
-    </script>
   </head>
   <body class="bg-gray-100 min-h-screen flex flex-col font-sans">
 
@@ -36,15 +14,14 @@
           <img src="logo1.png" alt="Logo" class="h-10 w-auto rounded-lg object-contain shrink-0" />
           <span class="text-white text-xl font-bold tracking-wide">Student Task Tracker</span>
         </div>
-        <span class="text-slate-400 text-sm hidden sm:block">Stay organised. Stay ahead.</span>
       </div>
     </nav>
 
     <header class="bg-gradient-to-br from-indigo-500 via-violet-500 to-purple-600 text-white py-14 px-4 text-center">
-      <h1 class="text-3xl sm:text-4xl font-extrabold mb-3 drop-shadow">
+      <h1 class="text-3xl sm:text-4xl font-extrabold mb-3">
         Manage Your Tasks Effortlessly
       </h1>
-      <p class="text-indigo-100 text-base sm:text-lg max-w-xl mx-auto opacity-90">
+      <p class="text-indigo-100 text-base sm:text-lg max-w-xl mx-auto">
         Add your assignments and deadlines, track what needs to be done,
         and never miss a due date again.
       </p>
